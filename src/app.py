@@ -61,6 +61,22 @@ def signup_for_activity(activity_name: str, email: str):
 
     # Get the specific activity
     activity = activities[activity_name]
+    email = email.strip().casefold()
+    if not email:
+        raise HTTPException(status_code=400, detail="Email is required")
+
+    if any(
+        participant.strip().casefold() == email
+        for participant in activity["participants"]
+    ):
+        raise HTTPException(
+            status_code=400,
+            detail="Student already signed up for this activity",
+        )
+
+    # Validate activity is not full
+    if len(activity["participants"]) >= activity["max_participants"]:
+        raise HTTPException(status_code=400, detail="Activity is full")
 
     # Add student
     activity["participants"].append(email)
