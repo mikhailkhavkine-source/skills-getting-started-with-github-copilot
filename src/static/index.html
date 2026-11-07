@@ -3,48 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mergington High School Activities</title>
+    <meta name="theme-color" content="#071b16" />
+    <meta
+      name="description"
+      content="Play six games of bingo on your phone with a built-in number caller."
+    />
+    <title>One Card Bingo</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
   </head>
   <body>
-    <header>
-      <h1>Mergington High School</h1>
-      <h2>Extracurricular Activities</h2>
-    </header>
+    <main class="game">
+      <header class="game-header">
+        <p class="eyebrow">THE BINGO ROOM</p>
+        <h1>One Card <span>Bingo</span></h1>
+        <p class="intro">
+          Draw a number or listen to your host, then tap matching squares.
+        </p>
+      </header>
 
-    <main>
-      <section id="activities-container">
-        <h3>Available Activities</h3>
-        <div id="activities-list">
-          <!-- Activities will be loaded here -->
-          <p>Loading activities...</p>
+      <section class="card-panel" aria-label="Your bingo card">
+        <div class="card-topline">
+          <div>
+            <p class="card-label" id="game-number">GAME 1 OF 6</p>
+            <p class="card-hint">Uses device storage</p>
+            <div class="progress" id="progress" aria-live="polite">0 / 24</div>
+          </div>
+          <div class="caller" aria-label="Random number caller">
+            <span class="caller-label">NUMBER CALLER</span>
+            <div class="called-number" id="called-number" aria-live="polite">--</div>
+            <button type="button" class="draw-button" id="draw-button">Draw number</button>
+            <span class="caller-count" id="caller-count">0 / 75 called</span>
+          </div>
+        </div>
+
+        <details class="call-history">
+          <summary>Called numbers</summary>
+          <p id="called-history">No numbers called yet.</p>
+        </details>
+
+        <div class="bingo-letters" aria-hidden="true">
+          <span>B</span>
+          <span>I</span>
+          <span>N</span>
+          <span>G</span>
+          <span>O</span>
+        </div>
+        <div
+          class="bingo-grid"
+          id="bingo-grid"
+          role="group"
+          aria-label="Bingo numbers"
+        ></div>
+        <div class="celebration" id="celebration" hidden>
+          <div class="fireworks" aria-hidden="true">
+            <span class="firework firework-one"></span>
+            <span class="firework firework-two"></span>
+            <span class="firework firework-three"></span>
+          </div>
+          <p class="celebration-kicker">A WINNING LINE</p>
+          <p class="celebration-title">Congratulations!</p>
+          <p class="celebration-message">Bingo! You have a winning line.</p>
+          <button type="button" class="celebration-close" id="celebration-close">
+            Back to card
+          </button>
+        </div>
+        <p class="game-status" id="game-status" aria-live="polite">
+          Your card is ready. Good luck!
+        </p>
+        <p class="storage-notice hidden" id="storage-notice" role="status"></p>
+        <div class="game-controls">
+          <button type="button" class="next-game-button" id="next-game">
+            Start game 2
+          </button>
+          <p id="game-limit">Starting the next game clears marks and called numbers.</p>
         </div>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
-        <form id="signup-form">
-          <div class="form-group">
-            <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
-          </div>
-          <div class="form-group">
-            <label for="activity">Select Activity:</label>
-            <select id="activity" required>
-              <option value="">-- Select an activity --</option>
-              <!-- Activity options will be loaded here -->
-            </select>
-          </div>
-          <button type="submit">Sign Up</button>
-        </form>
-        <div id="message" class="hidden"></div>
-      </section>
+      <footer class="game-footer">
+        <span class="footer-mark" aria-hidden="true">B</span>
+        <p>One card. Six games. Have fun.</p>
+      </footer>
     </main>
-
-    <footer>
-      <p>&copy; 2023 Mergington High School</p>
-    </footer>
-
-    <script src="app.js"></script>
   </body>
 </html>
